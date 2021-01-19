@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>ML Project</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+      #logo{
+    position: absolute;
+    left: 30px;
+    top: 25px;
+    box-sizing: border-box;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+#heading{
+  position: absolute;
+  left: 150px;
+  top: 57px;
+}
+
+.jumbotron {
+    padding:70px 30px 70px 30px;
+    height: 150px ;
+    margin:0px auto;
+    background: rgb(121, 48, 59) ;
+    color:floralwhite;
+}
+
+.button_css {
+  color: #494949 !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #ffffff;
+  padding: 20px;
+  border: 4px solid #494949 !important;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
+}
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  margin: 5px 2px;
+  position: absolute;
+  right: 20px;
+  top: 90px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+  </style>
+
+</head>
+
+<body>
+ <header class='jumbotron'>
+     <img src="https://media.istockphoto.com/vectors/breast-cancer-awareness-with-realistic-pink-ribbon-on-a-white-women-vector-id1176663746?k=6&m=1176663746&s=612x612&w=0&h=K-QPri6rIiXYvDLuPvtt914KES5zqWGddFtcAD6u7Yk=" id="logo">
+     &nbsp;&nbsp;&nbsp;&nbsp;
+     <p id='heading'>BREAST CANCER PREDICTION</p>
+     <section></div><a href="https://github.com/ajain09/Breast_Cancer_prediction" class="fa fa-github"></a></section>
+
+ </header>
+ <div class="content" id='main'>
+	
+    <!-- Get input for predict the cancer -->
+    <center>
+    <form action="{{ url_for('predict')}}" method="post">
+        <br><h4>ENTER THE FOLLOWING VALUES TO PREDICT</h4><hr>
+        
+    	<input type="text" name="mean_radius" placeholder="mean radius" required="required" />&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" name="mean_texture" placeholder="mean texture" required="required" />&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" name="mean_perimeter" placeholder="mean perimeter" required="required" />
+        <br>
+        <br>
+		<input type="text" name="mean_area" placeholder="mean area" required="required" />&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" name="mean_smoothness" placeholder="mean smoothness" required="required" />&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" name="mean_compactness" placeholder="mean compactness" required="required" />
+        <br>
+        <br>
+    	<input type="text" name="mean_concavity" placeholder="mean concavity" required="required" />&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" name="mean_concave_points" placeholder="mean concave points" required="required" />&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" name="mean_symmetry" placeholder="mean symmetry" required="required" />
+        <br>
+        <br>
+    	<input type="text" name="mean_fractal_dimension" placeholder="mean fractal dimension" required="required" />&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" name="radius_error" placeholder="radius error" required="required" />&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="text" name="texture_error" placeholder="texture error" required="required" />
+		<br>
+		<br>
+    	<input type="text" name="perimeter_error" placeholder="perimeter error" required="required" />&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" name="area_error" placeholder="area error " required="required" />&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" name="smoothness_error" placeholder="smoothness error" required="required" />
+		<br>
+        <br>
+    	<input type="text" name="compactness_error" placeholder="compactness error" required="required" />&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" name="concavity_error" placeholder="concavity error" required="required" />&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="text" name="concave_points_error" placeholder="concave points error" required="required" />
+		<br>
+    	<br>
+    	<input type="text" name="symmetry_error" placeholder="symmetry error" required="required" />&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" name="fractal_dimension_error" placeholder="fractal dimension error" required="required" />&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" name="worst_radius" placeholder="worst radius" required="required" />
+		<br>
+        <br>
+    	<input type="text" name="worst_texture" placeholder="worst texture" required="required" />&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" name="worst_perimeter" placeholder="worst perimeter" required="required" />&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="text" name="worst_area" placeholder="worst area" required="required" />
+		<br>
+		<br>
+    	<input type="text" name="worst_smoothness" placeholder="worst smoothness" required="required" />&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" name="worst_compactness" placeholder="worst compactness" required="required" />&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" name="worst_concavity" placeholder="worst concavity" required="required" />
+		<br>
+        <br>
+    	<input type="text" name="worst_concave_points" placeholder="worst concave points" required="required" />&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" name="worst_symmetry" placeholder="worst symmetry" required="required" />&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="text" name="worst_fractal_dimension" placeholder="worst fractal dimension" required="required" />
+        <br>
+        <br>
+        
+        <!-- button -->
+        <button type="submit" class="btn" onclick="result()">Predict</button>
+        <!--<button>Clear</button>-->
+        
+        <h3>{{ pred }}</h3>
+
+    </form>
+    </center>
+   
+ </div>
+
+</body>
+</html>
